@@ -43,7 +43,7 @@ set script_folder [_tcl::get_script_folder]
 
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
-   create_project zcu104_vcu_ml zcu104_vcu_ml -part xczu7ev-ffvc1156-2-e
+   create_project -force zcu104_vcu_ml zcu104_vcu_ml -part xczu7ev-ffvc1156-2-e
    set_property BOARD_PART xilinx.com:zcu104:part0:1.1 [current_project]
 }
 
