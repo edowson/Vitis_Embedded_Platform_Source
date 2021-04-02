@@ -43,7 +43,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
-   create_project zcu104_base zcu104_base -part xczu7ev-ffvc1156-2-e
+   create_project -force zcu104_base zcu104_base -part xczu7ev-ffvc1156-2-e
    set_property BOARD_PART xilinx.com:zcu104:part0:1.1 [current_project]
 }
 
