@@ -1,5 +1,5 @@
 PLATFORM ?= zcu104_vcu_ml
-CWD=$(shell pwd)
+CWD=$(shell readlink -f .)
 XSA_DIR ?= $(CWD)/vivado
 XSCT = $(XILINX_VITIS)/bin/xsct
 CPU_ARCH=a53
