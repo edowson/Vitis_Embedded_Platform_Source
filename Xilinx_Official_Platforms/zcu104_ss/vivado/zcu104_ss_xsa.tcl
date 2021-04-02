@@ -159,26 +159,26 @@ set bCheckIPsPassed 1
 set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\
-xilinx.com:ip:axi_intc:4.1\
-xilinx.com:ip:clk_wiz:6.0\
-xilinx.com:ip:axi_iic:2.0\
-xilinx.com:ip:xlconcat:2.1\
-xilinx.com:ip:proc_sys_reset:5.0\
-xilinx.com:ip:xlconstant:1.1\
-xilinx.com:ip:vid_phy_controller:2.2\
-xilinx.com:ip:zynq_ultra_ps_e:3.3\
-xilinx.com:ip:util_ds_buf:2.1\
-xilinx.com:ip:xlslice:1.0\
-xilinx.com:user:hdmi_hb:1.0\
-xilinx.com:ip:v_frmbuf_wr:2.1\
-xilinx.com:ip:v_hdmi_rx_ss:3.1\
-xilinx.com:ip:v_proc_ss:2.2\
-xilinx.com:ip:v_hdmi_tx_ss:3.1\
-xilinx.com:ip:v_mix:4.0\
-xilinx.com:ip:axis_subset_converter:1.1\
-xilinx.com:ip:mipi_csi2_rx_subsystem:4.1\
-xilinx.com:ip:v_demosaic:1.0\
-xilinx.com:ip:v_gamma_lut:1.0\
+xilinx.com:ip:axi_intc:*\
+xilinx.com:ip:clk_wiz:*\
+xilinx.com:ip:axi_iic:*\
+xilinx.com:ip:xlconcat:*\
+xilinx.com:ip:proc_sys_reset:*\
+xilinx.com:ip:xlconstant:*\
+xilinx.com:ip:vid_phy_controller:*\
+xilinx.com:ip:zynq_ultra_ps_e:*\
+xilinx.com:ip:util_ds_buf:*\
+xilinx.com:ip:xlslice:*\
+xilinx.com:user:hdmi_hb:*\
+xilinx.com:ip:v_frmbuf_wr:*\
+xilinx.com:ip:v_hdmi_rx_ss:*\
+xilinx.com:ip:v_proc_ss:*\
+xilinx.com:ip:v_hdmi_tx_ss:*\
+xilinx.com:ip:v_mix:*\
+xilinx.com:ip:axis_subset_converter:*\
+xilinx.com:ip:mipi_csi2_rx_subsystem:*\
+xilinx.com:ip:v_demosaic:*\
+xilinx.com:ip:v_gamma_lut:*\
 "
 
    set list_ips_missing ""
@@ -275,7 +275,7 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
   create_bd_pin -dir I -type rst video_aresetn
 
   # Create instance: axis_subset_converter_0, and set properties
-  set axis_subset_converter_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_subset_converter:1.1 axis_subset_converter_0 ]
+  set axis_subset_converter_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_subset_converter axis_subset_converter_0 ]
   set_property -dict [ list \
    CONFIG.M_TDATA_NUM_BYTES {2} \
    CONFIG.S_TDATA_NUM_BYTES {3} \
@@ -283,7 +283,7 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
  ] $axis_subset_converter_0
 
   # Create instance: demosaic_rst_gpio, and set properties
-  set demosaic_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 demosaic_rst_gpio ]
+  set demosaic_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice demosaic_rst_gpio ]
   set_property -dict [ list \
    CONFIG.DIN_FROM {7} \
    CONFIG.DIN_TO {7} \
@@ -292,7 +292,7 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
  ] $demosaic_rst_gpio
 
   # Create instance: frmbuf_wr_rst_gpio, and set properties
-  set frmbuf_wr_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 frmbuf_wr_rst_gpio ]
+  set frmbuf_wr_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice frmbuf_wr_rst_gpio ]
   set_property -dict [ list \
    CONFIG.DIN_FROM {2} \
    CONFIG.DIN_TO {2} \
@@ -301,7 +301,7 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
  ] $frmbuf_wr_rst_gpio
 
   # Create instance: gamma_rst_gpio, and set properties
-  set gamma_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 gamma_rst_gpio ]
+  set gamma_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice gamma_rst_gpio ]
   set_property -dict [ list \
    CONFIG.DIN_FROM {8} \
    CONFIG.DIN_TO {8} \
@@ -310,7 +310,7 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
  ] $gamma_rst_gpio
 
   # Create instance: mipi_csi2_rx_subsystem_0, and set properties
-  set mipi_csi2_rx_subsystem_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mipi_csi2_rx_subsystem:4.1 mipi_csi2_rx_subsystem_0 ]
+  set mipi_csi2_rx_subsystem_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:mipi_csi2_rx_subsystem mipi_csi2_rx_subsystem_0 ]
   set_property -dict [ list \
    CONFIG.CLK_LANE_IO_LOC {F17} \
    CONFIG.CLK_LANE_IO_LOC_NAME {IO_L13P_T2L_N0_GC_QBC_67} \
@@ -370,7 +370,7 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
  ] [get_bd_pins /mipi_csi2_rx/mipi_csi2_rx_subsystem_0/video_aresetn]
 
   # Create instance: sensor_rst_gpio, and set properties
-  set sensor_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 sensor_rst_gpio ]
+  set sensor_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice sensor_rst_gpio ]
   set_property -dict [ list \
    CONFIG.DIN_FROM {12} \
    CONFIG.DIN_TO {12} \
@@ -379,7 +379,7 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
  ] $sensor_rst_gpio
 
   # Create instance: v_demosaic_0, and set properties
-  set v_demosaic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_demosaic:1.0 v_demosaic_0 ]
+  set v_demosaic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_demosaic v_demosaic_0 ]
   set_property -dict [ list \
    CONFIG.ENABLE_ZIPPER_REMOVAL {false} \
    CONFIG.SAMPLES_PER_CLOCK {2} \
@@ -387,7 +387,7 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
  ] $v_demosaic_0
 
   # Create instance: v_frmbuf_wr_0, and set properties
-  set v_frmbuf_wr_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_frmbuf_wr:2.1 v_frmbuf_wr_0 ]
+  set v_frmbuf_wr_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_frmbuf_wr v_frmbuf_wr_0 ]
   set_property -dict [ list \
    CONFIG.AXIMM_DATA_WIDTH {128} \
    CONFIG.C_M_AXI_MM_VIDEO_DATA_WIDTH {128} \
@@ -406,13 +406,13 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
  ] $v_frmbuf_wr_0
 
   # Create instance: v_gamma_lut_0, and set properties
-  set v_gamma_lut_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_gamma_lut:1.0 v_gamma_lut_0 ]
+  set v_gamma_lut_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_gamma_lut v_gamma_lut_0 ]
   set_property -dict [ list \
    CONFIG.SAMPLES_PER_CLOCK {2} \
  ] $v_gamma_lut_0
 
   # Create instance: v_proc_ss_csc, and set properties
-  set v_proc_ss_csc [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_proc_ss:2.2 v_proc_ss_csc ]
+  set v_proc_ss_csc [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_proc_ss v_proc_ss_csc ]
   set_property -dict [ list \
    CONFIG.C_COLORSPACE_SUPPORT {2} \
    CONFIG.C_CSC_ENABLE_WINDOW {false} \
@@ -422,7 +422,7 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
  ] $v_proc_ss_csc
 
   # Create instance: v_proc_ss_scaler, and set properties
-  set v_proc_ss_scaler [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_proc_ss:2.2 v_proc_ss_scaler ]
+  set v_proc_ss_scaler [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_proc_ss v_proc_ss_scaler ]
   set_property -dict [ list \
    CONFIG.C_COLORSPACE_SUPPORT {1} \
    CONFIG.C_ENABLE_CSC {true} \
@@ -435,10 +435,10 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
  ] $v_proc_ss_scaler
 
   # Create instance: vcc, and set properties
-  set vcc [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 vcc ]
+  set vcc [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant vcc ]
 
   # Create instance: vpss_csc_rst_gpio, and set properties
-  set vpss_csc_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 vpss_csc_rst_gpio ]
+  set vpss_csc_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice vpss_csc_rst_gpio ]
   set_property -dict [ list \
    CONFIG.DIN_FROM {6} \
    CONFIG.DIN_TO {6} \
@@ -447,7 +447,7 @@ proc create_hier_cell_mipi_csi2_rx { parentCell nameHier } {
  ] $vpss_csc_rst_gpio
 
   # Create instance: vpss_scaler_rst_gpio, and set properties
-  set vpss_scaler_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 vpss_scaler_rst_gpio ]
+  set vpss_scaler_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice vpss_scaler_rst_gpio ]
   set_property -dict [ list \
    CONFIG.DIN_FROM {4} \
    CONFIG.DIN_TO {4} \
@@ -534,13 +534,13 @@ proc create_hier_cell_interrupt_concat { parentCell nameHier } {
   create_bd_pin -dir O -from 31 -to 0 dout
 
   # Create instance: xlconcat_interrupt_0, and set properties
-  set xlconcat_interrupt_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_interrupt_0 ]
+  set xlconcat_interrupt_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat xlconcat_interrupt_0 ]
   set_property -dict [ list \
    CONFIG.NUM_PORTS {32} \
  ] $xlconcat_interrupt_0
 
   # Create instance: xlconstant_gnd, and set properties
-  set xlconstant_gnd [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_gnd ]
+  set xlconstant_gnd [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant xlconstant_gnd ]
   set_property -dict [ list \
    CONFIG.CONST_VAL {0} \
  ] $xlconstant_gnd
@@ -630,7 +630,7 @@ proc create_hier_cell_hdmi_output { parentCell nameHier } {
   set hdmi_hb_tx [ create_bd_cell -type ip -vlnv xilinx.com:user:hdmi_hb:1.0 hdmi_hb_tx ]
 
   # Create instance: v_hdmi_tx_ss_0, and set properties
-  set v_hdmi_tx_ss_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_hdmi_tx_ss:3.1 v_hdmi_tx_ss_0 ]
+  set v_hdmi_tx_ss_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_hdmi_tx_ss v_hdmi_tx_ss_0 ]
   set_property -dict [ list \
    CONFIG.C_HDMI_VERSION {3} \
    CONFIG.C_INPUT_PIXELS_PER_CLOCK {2} \
@@ -639,7 +639,7 @@ proc create_hier_cell_hdmi_output { parentCell nameHier } {
  ] $v_hdmi_tx_ss_0
 
   # Create instance: v_mix_0, and set properties
-  set v_mix_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_mix:4.0 v_mix_0 ]
+  set v_mix_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_mix v_mix_0 ]
   set_property -dict [ list \
    CONFIG.AXIMM_DATA_WIDTH {128} \
    CONFIG.AXIMM_NUM_OUTSTANDING {16} \
@@ -674,7 +674,7 @@ proc create_hier_cell_hdmi_output { parentCell nameHier } {
  ] $v_mix_0
 
   # Create instance: v_mix_rst_gpio, and set properties
-  set v_mix_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 v_mix_rst_gpio ]
+  set v_mix_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice v_mix_rst_gpio ]
   set_property -dict [ list \
    CONFIG.DIN_FROM {5} \
    CONFIG.DIN_TO {5} \
@@ -683,10 +683,10 @@ proc create_hier_cell_hdmi_output { parentCell nameHier } {
  ] $v_mix_rst_gpio
 
   # Create instance: vcc_const, and set properties
-  set vcc_const [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 vcc_const ]
+  set vcc_const [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant vcc_const ]
 
   # Create instance: xlconstant_0, and set properties
-  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
+  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant xlconstant_0 ]
   set_property -dict [ list \
    CONFIG.CONST_VAL {0} \
    CONFIG.CONST_WIDTH {48} \
@@ -797,7 +797,7 @@ proc create_hier_cell_hdmi_input { parentCell nameHier } {
   create_bd_pin -dir I -type clk video_clk
 
   # Create instance: frmbuf_wr_rst_gpio, and set properties
-  set frmbuf_wr_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 frmbuf_wr_rst_gpio ]
+  set frmbuf_wr_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice frmbuf_wr_rst_gpio ]
   set_property -dict [ list \
    CONFIG.DIN_FROM {10} \
    CONFIG.DIN_TO {10} \
@@ -806,10 +806,10 @@ proc create_hier_cell_hdmi_input { parentCell nameHier } {
  ] $frmbuf_wr_rst_gpio
 
   # Create instance: hdmi_hb_rx, and set properties
-  set hdmi_hb_rx [ create_bd_cell -type ip -vlnv xilinx.com:user:hdmi_hb:1.0 hdmi_hb_rx ]
+  set hdmi_hb_rx [ create_bd_cell -type ip -vlnv xilinx.com:user:hdmi_hb hdmi_hb_rx ]
 
   # Create instance: v_frmbuf_wr_0, and set properties
-  set v_frmbuf_wr_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_frmbuf_wr:2.1 v_frmbuf_wr_0 ]
+  set v_frmbuf_wr_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_frmbuf_wr v_frmbuf_wr_0 ]
   set_property -dict [ list \
    CONFIG.AXIMM_DATA_WIDTH {128} \
    CONFIG.C_M_AXI_MM_VIDEO_DATA_WIDTH {128} \
@@ -828,7 +828,7 @@ proc create_hier_cell_hdmi_input { parentCell nameHier } {
  ] $v_frmbuf_wr_0
 
   # Create instance: v_hdmi_rx_ss_0, and set properties
-  set v_hdmi_rx_ss_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_hdmi_rx_ss:3.1 v_hdmi_rx_ss_0 ]
+  set v_hdmi_rx_ss_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_hdmi_rx_ss v_hdmi_rx_ss_0 ]
   set_property -dict [ list \
    CONFIG.C_CD_INVERT {true} \
    CONFIG.C_HDMI_VERSION {3} \
@@ -837,7 +837,7 @@ proc create_hier_cell_hdmi_input { parentCell nameHier } {
  ] $v_hdmi_rx_ss_0
 
   # Create instance: v_proc_ss_scaler, and set properties
-  set v_proc_ss_scaler [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_proc_ss:2.2 v_proc_ss_scaler ]
+  set v_proc_ss_scaler [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_proc_ss v_proc_ss_scaler ]
   set_property -dict [ list \
    CONFIG.C_COLORSPACE_SUPPORT {0} \
    CONFIG.C_ENABLE_CSC {true} \
@@ -850,7 +850,7 @@ proc create_hier_cell_hdmi_input { parentCell nameHier } {
  ] $v_proc_ss_scaler
 
   # Create instance: vpss_scaler_rst_gpio, and set properties
-  set vpss_scaler_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 vpss_scaler_rst_gpio ]
+  set vpss_scaler_rst_gpio [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice vpss_scaler_rst_gpio ]
   set_property -dict [ list \
    CONFIG.DIN_FROM {9} \
    CONFIG.DIN_TO {9} \
@@ -935,16 +935,16 @@ proc create_hier_cell_dru_clk { parentCell nameHier } {
   create_bd_pin -dir O -from 0 -to 0 IBUF_OUT
 
   # Create instance: const_vcc, and set properties
-  set const_vcc [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 const_vcc ]
+  set const_vcc [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant const_vcc ]
 
   # Create instance: dru_ibufds_gt, and set properties
-  set dru_ibufds_gt [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_ds_buf:2.1 dru_ibufds_gt ]
+  set dru_ibufds_gt [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_ds_buf dru_ibufds_gt ]
   set_property -dict [ list \
    CONFIG.C_BUF_TYPE {IBUFDSGTE} \
  ] $dru_ibufds_gt
 
   # Create instance: dru_ibufds_gt_odiv2, and set properties
-  set dru_ibufds_gt_odiv2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_ds_buf:2.1 dru_ibufds_gt_odiv2 ]
+  set dru_ibufds_gt_odiv2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_ds_buf dru_ibufds_gt_odiv2 ]
   set_property -dict [ list \
    CONFIG.C_BUF_TYPE {BUFG_GT} \
  ] $dru_ibufds_gt_odiv2
@@ -1036,16 +1036,16 @@ proc create_root_design { parentCell } {
   set si5324_rst_out [ create_bd_port -dir O -from 0 -to 0 -type rst si5324_rst_out ]
 
   # Create instance: axi_intc_0, and set properties
-  set axi_intc_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_intc:4.1 axi_intc_0 ]
+  set axi_intc_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_intc axi_intc_0 ]
 
   # Create instance: axi_intc_pl, and set properties
-  set axi_intc_pl [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_intc:4.1 axi_intc_pl ]
+  set axi_intc_pl [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_intc axi_intc_pl ]
   set_property -dict [ list \
    CONFIG.C_IRQ_CONNECTION {1} \
  ] $axi_intc_pl
 
   # Create instance: axi_interconnect_hp0, and set properties
-  set axi_interconnect_hp0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_hp0 ]
+  set axi_interconnect_hp0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect axi_interconnect_hp0 ]
   set_property -dict [ list \
    CONFIG.ENABLE_ADVANCED_OPTIONS {0} \
    CONFIG.M00_HAS_DATA_FIFO {2} \
@@ -1071,7 +1071,7 @@ proc create_root_design { parentCell } {
  ] $axi_interconnect_hp0
 
   # Create instance: axi_interconnect_hp1, and set properties
-  set axi_interconnect_hp1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_hp1 ]
+  set axi_interconnect_hp1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect axi_interconnect_hp1 ]
   set_property -dict [ list \
    CONFIG.ENABLE_ADVANCED_OPTIONS {0} \
    CONFIG.M00_HAS_DATA_FIFO {2} \
@@ -1097,7 +1097,7 @@ proc create_root_design { parentCell } {
  ] $axi_interconnect_hp1
 
   # Create instance: axi_interconnect_hpm0, and set properties
-  set axi_interconnect_hpm0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_hpm0 ]
+  set axi_interconnect_hpm0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect axi_interconnect_hpm0 ]
   set_property -dict [ list \
    CONFIG.ENABLE_ADVANCED_OPTIONS {0} \
    CONFIG.M00_HAS_REGSLICE {1} \
@@ -1114,7 +1114,7 @@ proc create_root_design { parentCell } {
  ] $axi_interconnect_hpm0
 
   # Create instance: axi_interconnect_hpm1, and set properties
-  set axi_interconnect_hpm1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_hpm1 ]
+  set axi_interconnect_hpm1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect axi_interconnect_hpm1 ]
   set_property -dict [ list \
    CONFIG.ENABLE_ADVANCED_OPTIONS {0} \
    CONFIG.M00_HAS_REGSLICE {1} \
@@ -1135,7 +1135,7 @@ proc create_root_design { parentCell } {
  ] $axi_interconnect_hpm1
 
   # Create instance: clk_wiz_1, and set properties
-  set clk_wiz_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz_1 ]
+  set clk_wiz_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz clk_wiz_1 ]
   set_property -dict [ list \
    CONFIG.CLKIN1_JITTER_PS {200.0} \
    CONFIG.CLKOUT1_DRIVES {Buffer} \
@@ -1189,7 +1189,7 @@ proc create_root_design { parentCell } {
   create_hier_cell_dru_clk [current_bd_instance .] dru_clk
 
   # Create instance: hdmi_ctl_iic, and set properties
-  set hdmi_ctl_iic [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_iic:2.0 hdmi_ctl_iic ]
+  set hdmi_ctl_iic [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_iic hdmi_ctl_iic ]
 
   # Create instance: hdmi_input
   create_hier_cell_hdmi_input [current_bd_instance .] hdmi_input
@@ -1204,28 +1204,28 @@ proc create_root_design { parentCell } {
   create_hier_cell_mipi_csi2_rx [current_bd_instance .] mipi_csi2_rx
 
   # Create instance: platform_interrupts, and set properties
-  set platform_interrupts [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 platform_interrupts ]
+  set platform_interrupts [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat platform_interrupts ]
   set_property -dict [ list \
    CONFIG.NUM_PORTS {10} \
  ] $platform_interrupts
 
   # Create instance: proc_sys_reset_1, and set properties
-  set proc_sys_reset_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 proc_sys_reset_1 ]
+  set proc_sys_reset_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset proc_sys_reset_1 ]
   set_property -dict [ list \
    CONFIG.C_AUX_RESET_HIGH {0} \
  ] $proc_sys_reset_1
 
   # Create instance: sensor_iic, and set properties
-  set sensor_iic [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_iic:2.0 sensor_iic ]
+  set sensor_iic [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_iic sensor_iic ]
   set_property -dict [ list \
    CONFIG.IIC_FREQ_KHZ {400} \
  ] $sensor_iic
 
   # Create instance: vcc, and set properties
-  set vcc [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 vcc ]
+  set vcc [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant vcc ]
 
   # Create instance: vid_phy_controller_0, and set properties
-  set vid_phy_controller_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vid_phy_controller:2.2 vid_phy_controller_0 ]
+  set vid_phy_controller_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vid_phy_controller vid_phy_controller_0 ]
   set_property -dict [ list \
    CONFIG.CHANNEL_ENABLE {X0Y16 X0Y17 X0Y18} \
    CONFIG.CHANNEL_SITE {X0Y16} \
@@ -1260,13 +1260,13 @@ proc create_root_design { parentCell } {
  ] $vid_phy_controller_0
 
   # Create instance: xlconcat_1, and set properties
-  set xlconcat_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_1 ]
+  set xlconcat_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat xlconcat_1 ]
   set_property -dict [ list \
    CONFIG.NUM_PORTS {1} \
  ] $xlconcat_1
 
   # Create instance: zynq_ultra_ps_e_0, and set properties
-  set zynq_ultra_ps_e_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:zynq_ultra_ps_e:3.3 zynq_ultra_ps_e_0 ]
+  set zynq_ultra_ps_e_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:zynq_ultra_ps_e zynq_ultra_ps_e_0 ]
   set_property -dict [ list \
    CONFIG.CAN0_BOARD_INTERFACE {custom} \
    CONFIG.CAN1_BOARD_INTERFACE {custom} \
