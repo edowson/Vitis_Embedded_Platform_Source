@@ -2735,8 +2735,7 @@ launch_runs impl_1 -to_step write_bitstream -jobs 16
 wait_on_run impl_1
 
 file mkdir ./zcu104_vcu_ml/zcu104_vcu_ml.sdk
-#write_hwdef -force  -file ./zcu104_vcu_ml/zcu104_vcu_ml.sdk/zcu104_vcu_ml_wrapper.hdf
-file copy -force ./zcu104_vcu_ml/zcu104_vcu_ml.runs/impl_1/zcu104_vcu_ml_wrapper.hwdef ./zcu104_vcu_ml/zcu104_vcu_ml.sdk/zcu104_vcu_ml_wrapper.hdf
+write_hw_platform -fixed -force -include_bit -file ./zcu104_vcu_ml/zcu104_vcu_ml.sdk/zcu104_vcu_ml_wrapper.xsa
 
 #set_property dsa.post_sys_link_tcl_hook ./dynamic_postlink.tcl [current_project]
 set_property platform.post_sys_link_tcl_hook ./dynamic_postlink.tcl [current_project]
