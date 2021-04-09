@@ -1914,7 +1914,7 @@ write_hw_platform -fixed -force -include_bit -file ./zcu104_base/zcu104_base.sdk
 
 set_property platform.post_sys_link_overlay_tcl_hook ./dynamic_postlink.tcl [current_project]
 
-write_hw_platform -unified -include_bit ./zcu104_base.xsa
+write_hw_platform -force -unified -include_bit ./zcu104_base.xsa
 #write_hw_platform -force  ./zcu104_base.xsa
 
 validate_hw_platform ./zcu104_base.xsa
