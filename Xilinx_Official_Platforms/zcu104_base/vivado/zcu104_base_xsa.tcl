@@ -1910,7 +1910,7 @@ launch_runs impl_1 -to_step write_bitstream -jobs 16
 wait_on_run impl_1
 
 file mkdir ./zcu104_base/zcu104_base.sdk
-write_hwdef -force  -file ./zcu104_base/zcu104_base.sdk/zcu104_base_wrapper.hdf
+write_hw_platform -fixed -force -include_bit -file ./zcu104_base/zcu104_base.sdk/zcu104_base_wrapper.xsa
 
 set_property platform.post_sys_link_overlay_tcl_hook ./dynamic_postlink.tcl [current_project]
 
