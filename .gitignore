@@ -120,7 +120,7 @@ __pycache__/
 ## build tool directories for auxiliary files
 latex.out/
 
-# xilinx
+# xilinx vivado
 # generated folders
 *.cache
 *.gen
@@ -134,6 +134,10 @@ latex.out/
 *_sys.txt
 *.jou
 *.xpr
+
+# xilinx petalinux
+# generated folders
+components/
 
 # media
 video/
