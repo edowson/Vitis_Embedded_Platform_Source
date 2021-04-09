@@ -1912,7 +1912,7 @@ wait_on_run impl_1
 file mkdir ./zcu104_base/zcu104_base.sdk
 write_hwdef -force  -file ./zcu104_base/zcu104_base.sdk/zcu104_base_wrapper.hdf
 
-set_property platform.post_sys_link_tcl_hook ./dynamic_postlink.tcl [current_project]
+set_property platform.post_sys_link_overlay_tcl_hook ./dynamic_postlink.tcl [current_project]
 
 write_hw_platform -unified -include_bit ./zcu104_base.xsa
 #write_hw_platform -force  ./zcu104_base.xsa
